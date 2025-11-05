@@ -1,3 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Ai_Fitness_Workout_Manager</string>
+    <string name="app_name">Fitness Tracker</string>
+
+    <!-- Onboarding Strings -->
+    <string name="onboarding_image">Onboarding illustration</string>
+    <string name="skip">Skip</string>
+    <string name="next">Next</string>
+    <string name="get_started">Get Started</string>
+
+    <!-- Welcome Screen Titles -->
+    <string name="welcome_title_1">Track Your Fitness Journey</string>
+    <string name="welcome_title_2">Smart Meal Planning</string>
+    <string name="welcome_title_3">AI Fitness Assistant</string>
+    <string name="welcome_title_4">Monitor Your Progress</string>
+    <string name="welcome_title_5">Ready to Get Started?</string>
+
+    <!-- Welcome Screen Descriptions -->
+    <string name="welcome_desc_1">Log your workouts, monitor progress, and achieve your fitness goals with personalized tracking.</string>
+    <string name="welcome_desc_2">Get AI-powered meal recommendations, track your nutrition, and register meals with your camera.</string>
+    <string name="welcome_desc_3">Your personal AI coach provides workout recommendations, answers questions, and keeps you motivated.</string>
+    <string name="welcome_desc_4">Track your weight, calories burned, steps, and see your daily statistics all in one place.</string>
+    <string name="welcome_desc_5">Join thousands of users transforming their health and fitness. Let\'s begin your journey!</string>
+
+    <!-- Login/Sign Up Strings -->
+    <string name="login">Log In</string>
+    <string name="sign_up">Sign Up</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
 </resources>
