@@ -7,6 +7,8 @@
     <string name="skip">Skip</string>
     <string name="next">Next</string>
     <string name="get_started">Get Started</string>
+    <string name="back">Back</string>
+    <string name="complete">Complete</string>
 
     <!-- Welcome Screen Titles -->
     <string name="welcome_title_1">Track Your Fitness Journey</string>
@@ -22,9 +24,47 @@
     <string name="welcome_desc_4">Track your weight, calories burned, steps, and see your daily statistics all in one place.</string>
     <string name="welcome_desc_5">Join thousands of users transforming their health and fitness. Let\'s begin your journey!</string>
 
-    <!-- Login/Sign Up Strings -->
+    <!-- Auth Screen Strings -->
     <string name="login">Log In</string>
     <string name="sign_up">Sign Up</string>
     <string name="email">Email</string>
     <string name="password">Password</string>
+    <string name="confirm_password">Confirm Password</string>
+    <string name="full_name">Full Name</string>
+    <string name="forgot_password">Forgot Password?</string>
+    <string name="dont_have_account">Don\'t have an account?</string>
+    <string name="already_have_account">Already have an account?</string>
+    <string name="auth_welcome_subtitle">Your fitness journey starts here</string>
+    <string name="auth_login_subtitle">Welcome back! Log in to continue</string>
+    <string name="auth_signup_subtitle">Create an account to get started</string>
+    <string name="password_reset_sent">Password reset email sent. Check your inbox.</string>
+
+    <!-- Validation Error Messages -->
+    <string name="error_email_required">Email is required</string>
+    <string name="error_invalid_email">Please enter a valid email</string>
+    <string name="error_password_required">Password is required</string>
+    <string name="error_password_too_short">Password must be at least 6 characters</string>
+    <string name="error_confirm_password_required">Please confirm your password</string>
+    <string name="error_passwords_dont_match">Passwords don\'t match</string>
+    <string name="error_name_required">Name is required</string>
+    <string name="error_name_too_short">Name must be at least 2 characters</string>
+    <string name="error_please_answer">Please answer this question to continue</string>
+    <string name="error_not_logged_in">You are not logged in</string>
+    <string name="error_saving_profile">Error saving profile: %1$s</string>
+
+    <!-- Profile Setup Strings -->
+    <string name="select_date">Select Date</string>
+    <string name="select_your_birthday">Tap to select your birthday</string>
+    <string name="optional_field">Optional - you can skip this</string>
+    <string name="profile_completed">Profile completed successfully!</string>
+
+    <!-- Dashboard Strings -->
+    <string name="welcome_default">Welcome!</string>
+    <string name="welcome_user">Welcome, %1$s!</string>
+    <string name="dashboard_subtitle">Let\'s crush your goals today</string>
+    <string name="dashboard_placeholder">Your personalized fitness dashboard is coming soon.</string>
+    <string name="your_profile">Your Profile</string>
+    <string name="logout">Log Out</string>
+    <string name="coming_soon">Coming Soon</string>
+    <string name="coming_soon_desc">Workout plans, meal tracking, AI coach, and more features are on the way!</string>
 </resources>

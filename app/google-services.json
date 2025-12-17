@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "957427655972",
+    "project_id": "ai-fitness-tracker-manager",
+    "storage_bucket": "ai-fitness-tracker-manager.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:957427655972:android:21f4657e7a37ec85f53fb1",
+        "android_client_info": {
+          "package_name": "com.example.ai_fitness_workout_manager"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBB9xiQsnQCgds-def6f01VKLtQDAT5Lnw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

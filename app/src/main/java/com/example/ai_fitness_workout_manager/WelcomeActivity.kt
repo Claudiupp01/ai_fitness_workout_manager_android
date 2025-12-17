@@ -126,7 +126,7 @@ class WelcomeActivity : AppCompatActivity() {
     }
 
     private fun navigateToLogin() {
-        val intent = Intent(this, LoginActivity::class.java)
+        val intent = Intent(this, AuthActivity::class.java)
         startActivity(intent)
         finish()
     }
