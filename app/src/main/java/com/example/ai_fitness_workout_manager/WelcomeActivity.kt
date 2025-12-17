@@ -25,6 +25,12 @@ class WelcomeActivity : AppCompatActivity() {
         val sharedPref = getSharedPreferences("AppPreferences", Context.MODE_PRIVATE)
         val isFirstLaunch = sharedPref.getBoolean("isFirstLaunch", true)
 
+//        Android **writes this to a real XML file on your phone's internal storage**. This file persists on the device's flash memory, just like any other file.
+//
+//        ## **Physical Storage Location**
+//        The file is saved at:
+//          /data/data/com.example.ai_fitness_workout_manager/shared_prefs/AppPreferences.xml
+
         if (!isFirstLaunch) {
             // Not first launch, go directly to LoginActivity
             navigateToLogin()
