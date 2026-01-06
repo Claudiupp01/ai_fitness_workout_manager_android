@@ -7,6 +7,7 @@ import androidx.fragment.app.Fragment
 import com.example.ai_fitness_workout_manager.firebase.FirebaseAuthManager
 import com.example.ai_fitness_workout_manager.fragment.HomeFragment
 import com.example.ai_fitness_workout_manager.fragment.PlaceholderFragment
+import com.example.ai_fitness_workout_manager.fragment.ProfileFragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class MainActivity : AppCompatActivity() {
@@ -18,7 +19,7 @@ class MainActivity : AppCompatActivity() {
     private var statsFragment: PlaceholderFragment? = null
     private var mealsFragment: PlaceholderFragment? = null
     private var workoutFragment: PlaceholderFragment? = null
-    private var profileFragment: PlaceholderFragment? = null
+    private var profileFragment: ProfileFragment? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -117,13 +118,9 @@ class MainActivity : AppCompatActivity() {
         return workoutFragment!!
     }
 
-    private fun getProfileFragment(): PlaceholderFragment {
+    private fun getProfileFragment(): ProfileFragment {
         if (profileFragment == null) {
-            profileFragment = PlaceholderFragment.newInstance(
-                title = getString(R.string.nav_profile),
-                message = getString(R.string.profile_coming_soon),
-                iconResId = R.drawable.ic_nav_profile
-            )
+            profileFragment = ProfileFragment.newInstance()
         }
         return profileFragment!!
     }

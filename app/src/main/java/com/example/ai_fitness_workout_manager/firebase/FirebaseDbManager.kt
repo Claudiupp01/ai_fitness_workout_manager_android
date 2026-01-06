@@ -2,6 +2,7 @@ package com.example.ai_fitness_workout_manager.firebase
 
 import com.example.ai_fitness_workout_manager.model.MealEntry
 import com.example.ai_fitness_workout_manager.model.UserProfile
+import com.example.ai_fitness_workout_manager.model.WeightEntry
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
@@ -299,5 +300,150 @@ object FirebaseDbManager {
      */
     fun formatDateForDb(date: java.util.Date): String {
         return dateFormat.format(date)
+    }
+
+    // ==================== WEIGHT TRACKING FUNCTIONS ====================
+
+    /**
+     * Add a new weight entry and update current weight in profile
+     */
+    fun addWeightEntry(
+        userId: String,
+        weightKg: Float,
+        note: String = "",
+        onSuccess: () -> Unit,
+        onError: (String) -> Unit
+    ) {
+        val today = formatDateForDb(java.util.Date())
+        val weightRef = usersRef.child(userId).child("weightHistory").child(today)
+        val entryId = weightRef.push().key ?: return onError("Failed to generate entry ID")
+
+        val entry = WeightEntry(
+            id = entryId,
+            weightKg = weightKg,
+            date = today,
+            timestamp = System.currentTimeMillis(),
+            note = note
+        )
+
+        // Update both weight history and current weight in profile
+        val updates = mapOf(
+            "weightHistory/$today/$entryId" to entry.toMap(),
+            "profile/currentWeightKg" to weightKg,
+            "profile/updatedAt" to System.currentTimeMillis()
+        )
+
+        usersRef.child(userId).updateChildren(updates)
+            .addOnSuccessListener { onSuccess() }
+            .addOnFailureListener { e -> onError(e.message ?: "Failed to add weight entry") }
+    }
+
+    /**
+     * Get all weight entries for a user (sorted by date)
+     */
+    fun getWeightHistory(
+        userId: String,
+        onSuccess: (List<WeightEntry>) -> Unit,
+        onError: (String) -> Unit
+    ) {
+        usersRef.child(userId).child("weightHistory")
+            .addListenerForSingleValueEvent(object : ValueEventListener {
+                override fun onDataChange(snapshot: DataSnapshot) {
+                    val entries = mutableListOf<WeightEntry>()
+                    for (dateSnapshot in snapshot.children) {
+                        for (entrySnapshot in dateSnapshot.children) {
+                            val entry = entrySnapshot.getValue(WeightEntry::class.java)
+                            if (entry != null) {
+                                entries.add(entry)
+                            }
+                        }
+                    }
+                    // Sort by timestamp (oldest first for graph)
+                    entries.sortBy { it.timestamp }
+                    onSuccess(entries)
+                }
+
+                override fun onCancelled(error: DatabaseError) {
+                    onError(error.message)
+                }
+            })
+    }
+
+    /**
+     * Get the latest weight entry
+     */
+    fun getLatestWeight(
+        userId: String,
+        onSuccess: (WeightEntry?) -> Unit,
+        onError: (String) -> Unit
+    ) {
+        usersRef.child(userId).child("weightHistory")
+            .orderByKey()
+            .limitToLast(1)
+            .addListenerForSingleValueEvent(object : ValueEventListener {
+                override fun onDataChange(snapshot: DataSnapshot) {
+                    var latestEntry: WeightEntry? = null
+                    var latestTimestamp = 0L
+
+                    for (dateSnapshot in snapshot.children) {
+                        for (entrySnapshot in dateSnapshot.children) {
+                            val entry = entrySnapshot.getValue(WeightEntry::class.java)
+                            if (entry != null && entry.timestamp > latestTimestamp) {
+                                latestEntry = entry
+                                latestTimestamp = entry.timestamp
+                            }
+                        }
+                    }
+                    onSuccess(latestEntry)
+                }
+
+                override fun onCancelled(error: DatabaseError) {
+                    onError(error.message)
+                }
+            })
+    }
+
+    /**
+     * Populate sample weight history for demo (simulating gradual weight loss over past 30 days)
+     */
+    fun populateSampleWeightHistory(
+        userId: String,
+        startWeight: Float,
+        targetWeight: Float,
+        onSuccess: () -> Unit,
+        onError: (String) -> Unit
+    ) {
+        val calendar = Calendar.getInstance()
+        val updates = mutableMapOf<String, Any>()
+
+        val totalDays = 30
+        val weightDiff = startWeight - targetWeight
+        val dailyChange = weightDiff / 60f // Simulate losing weight over 60 days (halfway through)
+
+        // Generate weight entries for last 30 days
+        for (dayOffset in totalDays downTo 0) {
+            calendar.time = java.util.Date()
+            calendar.add(Calendar.DAY_OF_YEAR, -dayOffset)
+            val dateStr = dateFormat.format(calendar.time)
+
+            // Add some realistic variation (+/- 0.3kg)
+            val variation = (Math.random() * 0.6 - 0.3).toFloat()
+            val weight = startWeight - (dailyChange * (totalDays - dayOffset)) + variation
+
+            val entryId = "weight_$dayOffset"
+            val entry = WeightEntry(
+                id = entryId,
+                weightKg = String.format("%.1f", weight).toFloat(),
+                date = dateStr,
+                timestamp = calendar.timeInMillis,
+                note = if (dayOffset == totalDays) "Starting weight" else ""
+            )
+
+            updates["weightHistory/$dateStr/$entryId"] = entry.toMap()
+        }
+
+        usersRef.child(userId).updateChildren(updates)
+            .addOnSuccessListener { onSuccess() }
+            .addOnFailureListener { e -> onError(e.message ?: "Failed to populate weight history") }
     }
 }

@@ -52,4 +52,9 @@
     <color name="mealLunch">#42A5F5</color>
     <color name="mealDinner">#7E57C2</color>
     <color name="mealSnack">#66BB6A</color>
+
+    <!-- Chart Colors -->
+    <color name="chartLine">#4CAF50</color>
+    <color name="chartFill">#E8F5E9</color>
+    <color name="chartTarget">#FF5722</color>
 </resources>
