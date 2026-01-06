@@ -58,6 +58,50 @@
     <string name="optional_field">Optional - you can skip this</string>
     <string name="profile_completed">Profile completed successfully!</string>
 
+    <!-- Navigation Strings -->
+    <string name="nav_home">Home</string>
+    <string name="nav_stats">Stats</string>
+    <string name="nav_meals">Meals</string>
+    <string name="nav_workout">Workout</string>
+    <string name="nav_profile">Profile</string>
+
+    <!-- Day Selector Strings -->
+    <string name="today">Today</string>
+    <string name="mon">Mo</string>
+    <string name="tue">Tu</string>
+    <string name="wed">We</string>
+    <string name="thu">Th</string>
+    <string name="fri">Fr</string>
+    <string name="sat">Sa</string>
+    <string name="sun">Su</string>
+
+    <!-- Nutrition Strings -->
+    <string name="calories">Calories</string>
+    <string name="protein">Protein</string>
+    <string name="carbs">Carbs</string>
+    <string name="fat">Fat</string>
+    <string name="fiber">Fiber</string>
+    <string name="kcal">kcal</string>
+    <string name="gram_short">g</string>
+    <string name="nutrition_value">%1$d/%2$d</string>
+    <string name="nutrition_value_float">%1$.0f/%2$.0f</string>
+
+    <!-- Meal Strings -->
+    <string name="todays_meals">Today\'s Meals</string>
+    <string name="breakfast">Breakfast</string>
+    <string name="lunch">Lunch</string>
+    <string name="dinner">Dinner</string>
+    <string name="snack">Snack</string>
+    <string name="add_meal">Add Meal</string>
+    <string name="no_meals_today">No meals logged today</string>
+    <string name="meal_macros">%1$d kcal \u2022 %2$.0fg P \u2022 %3$.0fg C \u2022 %4$.0fg F</string>
+
+    <!-- Placeholder Strings -->
+    <string name="stats_coming_soon">Stats &amp; Analytics coming soon!</string>
+    <string name="meals_coming_soon">Meal planning coming soon!</string>
+    <string name="workout_coming_soon">Workout plans coming soon!</string>
+    <string name="profile_coming_soon">Profile settings coming soon!</string>
+
     <!-- Dashboard Strings -->
     <string name="welcome_default">Welcome!</string>
     <string name="welcome_user">Welcome, %1$s!</string>

@@ -29,4 +29,27 @@
 
     <!-- Transparent -->
     <color name="transparent">#00000000</color>
+
+    <!-- Nutrition Colors -->
+    <color name="nutritionCalories">#FF6B6B</color>
+    <color name="nutritionProtein">#4ECDC4</color>
+    <color name="nutritionCarbs">#FFE66D</color>
+    <color name="nutritionFat">#A66CFF</color>
+    <color name="nutritionFiber">#88D498</color>
+
+    <!-- Navigation Colors -->
+    <color name="navBackground">#FFFFFF</color>
+    <color name="navItemSelected">#4CAF50</color>
+    <color name="navItemUnselected">#9E9E9E</color>
+
+    <!-- Day Selector Colors -->
+    <color name="daySelected">#4CAF50</color>
+    <color name="dayToday">#E8F5E9</color>
+    <color name="dayDefault">#FFFFFF</color>
+
+    <!-- Meal Type Colors -->
+    <color name="mealBreakfast">#FFA726</color>
+    <color name="mealLunch">#42A5F5</color>
+    <color name="mealDinner">#7E57C2</color>
+    <color name="mealSnack">#66BB6A</color>
 </resources>

@@ -2,92 +2,130 @@ package com.example.ai_fitness_workout_manager
 
 import android.content.Intent
 import android.os.Bundle
-import android.widget.Button
-import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.Fragment
 import com.example.ai_fitness_workout_manager.firebase.FirebaseAuthManager
-import com.example.ai_fitness_workout_manager.firebase.FirebaseDbManager
+import com.example.ai_fitness_workout_manager.fragment.HomeFragment
+import com.example.ai_fitness_workout_manager.fragment.PlaceholderFragment
+import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class MainActivity : AppCompatActivity() {
 
-    private lateinit var tvWelcome: TextView
-    private lateinit var tvUserInfo: TextView
-    private lateinit var btnLogout: Button
+    private lateinit var bottomNavigation: BottomNavigationView
+
+    // Keep fragments to avoid recreating them
+    private var homeFragment: HomeFragment? = null
+    private var statsFragment: PlaceholderFragment? = null
+    private var mealsFragment: PlaceholderFragment? = null
+    private var workoutFragment: PlaceholderFragment? = null
+    private var profileFragment: PlaceholderFragment? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
 
-        initViews()
-        loadUserData()
-        setupClickListeners()
-    }
-
-    private fun initViews() {
-        tvWelcome = findViewById(R.id.tvWelcome)
-        tvUserInfo = findViewById(R.id.tvUserInfo)
-        btnLogout = findViewById(R.id.btnLogout)
-    }
-
-    private fun loadUserData() {
-        val userId = FirebaseAuthManager.currentUserId
-
-        if (userId == null) {
+        // Check if user is logged in
+        if (!FirebaseAuthManager.isLoggedIn) {
             navigateToAuth()
             return
         }
 
-        FirebaseDbManager.getUserProfile(userId,
-            onSuccess = { profile ->
-                profile?.let {
-                    tvWelcome.text = getString(R.string.welcome_user, it.fullName.ifEmpty { "User" })
+        setContentView(R.layout.activity_main)
+        initViews()
+        setupBottomNavigation()
 
-                    val info = buildString {
-                        if (it.fitnessGoals.isNotEmpty()) {
-                            append("Goals: ${formatList(it.fitnessGoals)}\n")
-                        }
-                        if (it.activityLevel.isNotEmpty()) {
-                            append("Activity: ${formatActivityLevel(it.activityLevel)}\n")
-                        }
-                        if (it.workoutDaysPerWeek > 0) {
-                            append("Workout days: ${it.workoutDaysPerWeek}/week\n")
-                        }
-                        if (it.currentWeightKg > 0 && it.targetWeightKg > 0) {
-                            append("Weight: ${it.currentWeightKg.toInt()}kg → ${it.targetWeightKg.toInt()}kg")
-                        }
-                    }
-                    tvUserInfo.text = info.ifEmpty { getString(R.string.dashboard_placeholder) }
-                } ?: run {
-                    tvWelcome.text = getString(R.string.welcome_user, "User")
-                    tvUserInfo.text = getString(R.string.dashboard_placeholder)
+        // Set home as default selected tab
+        if (savedInstanceState == null) {
+            bottomNavigation.selectedItemId = R.id.nav_home
+        }
+    }
+
+    private fun initViews() {
+        bottomNavigation = findViewById(R.id.bottomNavigation)
+    }
+
+    private fun setupBottomNavigation() {
+        bottomNavigation.setOnItemSelectedListener { item ->
+            when (item.itemId) {
+                R.id.nav_home -> {
+                    showFragment(getHomeFragment())
+                    true
                 }
-            },
-            onError = {
-                tvWelcome.text = getString(R.string.welcome_user, "User")
-                tvUserInfo.text = getString(R.string.dashboard_placeholder)
+                R.id.nav_stats -> {
+                    showFragment(getStatsFragment())
+                    true
+                }
+                R.id.nav_meals -> {
+                    showFragment(getMealsFragment())
+                    true
+                }
+                R.id.nav_workout -> {
+                    showFragment(getWorkoutFragment())
+                    true
+                }
+                R.id.nav_profile -> {
+                    showFragment(getProfileFragment())
+                    true
+                }
+                else -> false
             }
-        )
-    }
-
-    private fun formatList(items: List<String>): String {
-        return items.joinToString(", ") { it.replace("_", " ").capitalizeWords() }
-    }
-
-    private fun formatActivityLevel(level: String): String {
-        return level.replace("_", " ").capitalizeWords()
-    }
-
-    private fun String.capitalizeWords(): String {
-        return split(" ").joinToString(" ") { word ->
-            word.replaceFirstChar { if (it.isLowerCase()) it.titlecase() else it.toString() }
         }
     }
 
-    private fun setupClickListeners() {
-        btnLogout.setOnClickListener {
-            FirebaseAuthManager.signOut()
-            navigateToAuth()
+    private fun showFragment(fragment: Fragment) {
+        supportFragmentManager.beginTransaction()
+            .replace(R.id.fragmentContainer, fragment)
+            .commit()
+    }
+
+    private fun getHomeFragment(): HomeFragment {
+        if (homeFragment == null) {
+            homeFragment = HomeFragment.newInstance()
         }
+        return homeFragment!!
+    }
+
+    private fun getStatsFragment(): PlaceholderFragment {
+        if (statsFragment == null) {
+            statsFragment = PlaceholderFragment.newInstance(
+                title = getString(R.string.nav_stats),
+                message = getString(R.string.stats_coming_soon),
+                iconResId = R.drawable.ic_nav_stats
+            )
+        }
+        return statsFragment!!
+    }
+
+    private fun getMealsFragment(): PlaceholderFragment {
+        if (mealsFragment == null) {
+            mealsFragment = PlaceholderFragment.newInstance(
+                title = getString(R.string.nav_meals),
+                message = getString(R.string.meals_coming_soon),
+                iconResId = R.drawable.ic_nav_meals
+            )
+        }
+        return mealsFragment!!
+    }
+
+    private fun getWorkoutFragment(): PlaceholderFragment {
+        if (workoutFragment == null) {
+            workoutFragment = PlaceholderFragment.newInstance(
+                title = getString(R.string.nav_workout),
+                message = getString(R.string.workout_coming_soon),
+                iconResId = R.drawable.ic_nav_workout
+            )
+        }
+        return workoutFragment!!
+    }
+
+    private fun getProfileFragment(): PlaceholderFragment {
+        if (profileFragment == null) {
+            profileFragment = PlaceholderFragment.newInstance(
+                title = getString(R.string.nav_profile),
+                message = getString(R.string.profile_coming_soon),
+                iconResId = R.drawable.ic_nav_profile
+            )
+        }
+        return profileFragment!!
     }
 
     private fun navigateToAuth() {
