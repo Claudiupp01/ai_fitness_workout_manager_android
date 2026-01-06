@@ -96,6 +96,22 @@
     <string name="no_meals_today">No meals logged today</string>
     <string name="meal_macros">%1$d kcal \u2022 %2$.0fg P \u2022 %3$.0fg C \u2022 %4$.0fg F</string>
 
+    <!-- Add Meal Dialog Strings -->
+    <string name="add_meal_title">Add Meal</string>
+    <string name="meal_type">Meal Type</string>
+    <string name="meal_name_hint">Meal name (e.g., Grilled Chicken Salad)</string>
+    <string name="meal_portion_hint">Portion / Description</string>
+    <string name="meal_portion_helper">e.g., 1 bowl, 200g, 2 slices</string>
+    <string name="meal_time">Time</string>
+    <string name="nutrition_info">Nutrition Information</string>
+    <string name="calories_hint">Calories</string>
+    <string name="save_meal">Save Meal</string>
+    <string name="meal_saved">Meal saved successfully!</string>
+    <string name="error_meal_name_required">Please enter a meal name</string>
+    <string name="error_meal_type_required">Please select a meal type</string>
+    <string name="error_saving_meal">Error saving meal: %1$s</string>
+    <string name="select_time">Select Time</string>
+
     <!-- Placeholder Strings -->
     <string name="stats_coming_soon">Stats &amp; Analytics coming soon!</string>
     <string name="meals_coming_soon">Meal planning coming soon!</string>

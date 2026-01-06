@@ -103,8 +103,17 @@ class HomeFragment : Fragment() {
         tvFiberValue = view.findViewById(R.id.tvFiberValue)
 
         btnAddMeal.setOnClickListener {
-            Toast.makeText(requireContext(), "Add meal feature coming soon!", Toast.LENGTH_SHORT).show()
+            showAddMealBottomSheet()
         }
+    }
+
+    private fun showAddMealBottomSheet() {
+        val bottomSheet = AddMealBottomSheetFragment.newInstance(selectedDate)
+        bottomSheet.setOnMealAddedListener {
+            // Refresh meals when a new meal is added
+            loadMealsForDate(selectedDate)
+        }
+        bottomSheet.show(childFragmentManager, "AddMealBottomSheet")
     }
 
     private fun setupDaySelector() {
@@ -167,10 +176,12 @@ class HomeFragment : Fragment() {
     private fun setupMealsList() {
         groupedMealAdapter = GroupedMealAdapter(
             onMealClicked = { meal ->
+                // TODO: Implement meal details/edit functionality
                 Toast.makeText(requireContext(), "Clicked: ${meal.name}", Toast.LENGTH_SHORT).show()
             },
             onAddMealClicked = { mealType ->
-                Toast.makeText(requireContext(), "Add $mealType coming soon!", Toast.LENGTH_SHORT).show()
+                // Open add meal bottom sheet (meal type pre-selection can be added later)
+                showAddMealBottomSheet()
             }
         )
 
