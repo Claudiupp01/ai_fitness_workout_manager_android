@@ -60,7 +60,7 @@
 
     <!-- Navigation Strings -->
     <string name="nav_home">Home</string>
-    <string name="nav_stats">Stats</string>
+    <string name="nav_ai_assistant">AI Coach</string>
     <string name="nav_meals">Meals</string>
     <string name="nav_workout">Workout</string>
     <string name="nav_profile">Profile</string>

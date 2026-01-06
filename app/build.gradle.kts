@@ -1,8 +1,17 @@
+import java.util.Properties
+
 plugins {
     // Add the Google services Gradle plugin
     id("com.google.gms.google-services")
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
+}
+
+// Load local.properties
+val localProperties = Properties()
+val localPropertiesFile = rootProject.file("local.properties")
+if (localPropertiesFile.exists()) {
+    localProperties.load(localPropertiesFile.inputStream())
 }
 
 android {
@@ -17,6 +26,16 @@ android {
         versionName = "1.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+
+        // Load Gemini API key from local.properties or environment variable
+        val geminiApiKey = localProperties.getProperty("GEMINI_API_KEY")
+            ?: System.getenv("GEMINI_API_KEY")
+            ?: ""
+        buildConfigField("String", "GEMINI_API_KEY", "\"$geminiApiKey\"")
+    }
+
+    buildFeatures {
+        buildConfig = true
     }
 
     buildTypes {
@@ -52,6 +71,13 @@ dependencies {
 
     // MPAndroidChart for weight tracking graph
     implementation("com.github.PhilJay:MPAndroidChart:v3.1.0")
+
+    // Google Generative AI (Gemini) SDK
+    implementation("com.google.ai.client.generativeai:generativeai:0.9.0")
+
+    // Kotlin Coroutines for async operations
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.7.3")
+    implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.7.0")
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)

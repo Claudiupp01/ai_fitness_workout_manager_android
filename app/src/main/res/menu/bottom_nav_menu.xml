@@ -2,9 +2,9 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-        android:id="@+id/nav_stats"
-        android:icon="@drawable/ic_nav_stats"
-        android:title="@string/nav_stats" />
+        android:id="@+id/nav_ai_assistant"
+        android:icon="@drawable/ic_ai_assistant"
+        android:title="@string/nav_ai_assistant" />
 
     <item
         android:id="@+id/nav_meals"

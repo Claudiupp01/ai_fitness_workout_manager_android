@@ -5,6 +5,7 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.example.ai_fitness_workout_manager.firebase.FirebaseAuthManager
+import com.example.ai_fitness_workout_manager.fragment.AIAssistantFragment
 import com.example.ai_fitness_workout_manager.fragment.HomeFragment
 import com.example.ai_fitness_workout_manager.fragment.PlaceholderFragment
 import com.example.ai_fitness_workout_manager.fragment.ProfileFragment
@@ -16,7 +17,7 @@ class MainActivity : AppCompatActivity() {
 
     // Keep fragments to avoid recreating them
     private var homeFragment: HomeFragment? = null
-    private var statsFragment: PlaceholderFragment? = null
+    private var aiAssistantFragment: AIAssistantFragment? = null
     private var mealsFragment: PlaceholderFragment? = null
     private var workoutFragment: PlaceholderFragment? = null
     private var profileFragment: ProfileFragment? = null
@@ -51,8 +52,8 @@ class MainActivity : AppCompatActivity() {
                     showFragment(getHomeFragment())
                     true
                 }
-                R.id.nav_stats -> {
-                    showFragment(getStatsFragment())
+                R.id.nav_ai_assistant -> {
+                    showFragment(getAIAssistantFragment())
                     true
                 }
                 R.id.nav_meals -> {
@@ -85,15 +86,11 @@ class MainActivity : AppCompatActivity() {
         return homeFragment!!
     }
 
-    private fun getStatsFragment(): PlaceholderFragment {
-        if (statsFragment == null) {
-            statsFragment = PlaceholderFragment.newInstance(
-                title = getString(R.string.nav_stats),
-                message = getString(R.string.stats_coming_soon),
-                iconResId = R.drawable.ic_nav_stats
-            )
+    private fun getAIAssistantFragment(): AIAssistantFragment {
+        if (aiAssistantFragment == null) {
+            aiAssistantFragment = AIAssistantFragment.newInstance()
         }
-        return statsFragment!!
+        return aiAssistantFragment!!
     }
 
     private fun getMealsFragment(): PlaceholderFragment {
