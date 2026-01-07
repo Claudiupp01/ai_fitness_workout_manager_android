@@ -50,51 +50,20 @@ class GroupedMealAdapter(
     private fun buildGroupedList(meals: List<MealEntry>): List<MealListItem> {
         val result = mutableListOf<MealListItem>()
 
-        // Group meals by type
-        val groupedMeals = meals.groupBy { it.mealType }
+        // Sort all meals chronologically by timestamp
+        val sortedMeals = meals.sortedBy { it.timestamp }
 
-        // Process each meal type in order
-        for (mealType in MEAL_TYPE_ORDER) {
-            val mealsOfType = groupedMeals[mealType] ?: emptyList()
-
-            if (mealType == MealEntry.TYPE_SNACK) {
-                // Handle snacks - number them if multiple and show meal name
-                mealsOfType.forEachIndexed { index, meal ->
-                    val snackTitle = if (mealsOfType.size > 1) {
-                        "Snack ${index + 1}: ${meal.name}"
-                    } else {
-                        "Snack: ${meal.name}"
-                    }
-
-                    result.add(
-                        MealListItem.SectionHeader(
-                            mealType = "${MealEntry.TYPE_SNACK}_$index",
-                            title = snackTitle,
-                            subtitle = meal.time,
-                            totalCalories = meal.calories,
-                            iconRes = getIconForMealType(MealEntry.TYPE_SNACK)
-                        )
-                    )
-                    // Add the meal item for macros display
-                    result.add(MealListItem.MealItem(meal))
-                }
-            } else if (mealsOfType.isNotEmpty()) {
-                // Regular meal types (breakfast, lunch, dinner)
-                val totalCalories = mealsOfType.sumOf { it.calories }
-
-                result.add(
-                    MealListItem.SectionHeader(
-                        mealType = mealType,
-                        title = getTitleForMealType(mealType),
-                        totalCalories = totalCalories,
-                        iconRes = getIconForMealType(mealType)
-                    )
+        // Show each meal with its header and details
+        sortedMeals.forEach { meal ->
+            result.add(
+                MealListItem.SectionHeader(
+                    mealType = meal.mealType,
+                    title = "${getTitleForMealType(meal.mealType)}: ${meal.name}",
+                    totalCalories = meal.calories,
+                    iconRes = getIconForMealType(meal.mealType)
                 )
-
-                mealsOfType.forEach { meal ->
-                    result.add(MealListItem.MealItem(meal))
-                }
-            }
+            )
+            result.add(MealListItem.MealItem(meal))
         }
 
         return result

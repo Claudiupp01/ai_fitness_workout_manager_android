@@ -273,8 +273,9 @@ class AddMealBottomSheetFragment : BottomSheetDialogFragment() {
             date = dateStr,
             onSuccess = { mealId ->
                 Toast.makeText(requireContext(), R.string.meal_saved, Toast.LENGTH_SHORT).show()
-                onMealAddedListener?.invoke()
                 dismiss()
+                // Call listener AFTER dismissing to ensure HomeFragment is visible when it refreshes
+                onMealAddedListener?.invoke()
             },
             onError = { error ->
                 btnSaveMeal.isEnabled = true

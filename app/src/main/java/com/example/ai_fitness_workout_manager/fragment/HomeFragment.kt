@@ -111,7 +111,10 @@ class HomeFragment : Fragment() {
         val bottomSheet = AddMealBottomSheetFragment.newInstance(selectedDate)
         bottomSheet.setOnMealAddedListener {
             // Refresh meals when a new meal is added
-            loadMealsForDate(selectedDate)
+            // Use post to ensure UI is ready
+            rvMeals.post {
+                loadMealsForDate(selectedDate)
+            }
         }
         bottomSheet.show(childFragmentManager, "AddMealBottomSheet")
     }
@@ -188,36 +191,15 @@ class HomeFragment : Fragment() {
         rvMeals.apply {
             layoutManager = LinearLayoutManager(context)
             adapter = groupedMealAdapter
-            isNestedScrollingEnabled = false
         }
     }
 
     private fun checkAndPopulateSampleData() {
         val userId = FirebaseAuthManager.currentUserId ?: return
 
-        // Check if we've already populated sample data for this user
-        val prefs = requireContext().getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE)
-        val key = "${KEY_SAMPLE_DATA_POPULATED}_$userId"
-
-        if (!prefs.getBoolean(key, false)) {
-            // Populate sample data
-            FirebaseDbManager.populateSampleMeals(
-                userId = userId,
-                onSuccess = {
-                    // Mark as populated
-                    prefs.edit().putBoolean(key, true).apply()
-                    // Load meals for today
-                    loadMealsForDate(selectedDate)
-                },
-                onError = { error ->
-                    // Still try to load existing meals
-                    loadMealsForDate(selectedDate)
-                }
-            )
-        } else {
-            // Sample data already exists, just load meals
-            loadMealsForDate(selectedDate)
-        }
+        // Just load meals - don't populate sample data automatically
+        // User can add their own meals via the Add Meal button
+        loadMealsForDate(selectedDate)
     }
 
     private fun loadUserName() {

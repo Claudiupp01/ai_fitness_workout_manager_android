@@ -132,28 +132,9 @@ class ProfileFragment : Fragment() {
     }
 
     private fun checkAndPopulateWeightHistory(profile: UserProfile) {
-        val userId = FirebaseAuthManager.currentUserId ?: return
-        val prefs = requireContext().getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE)
-        val key = "${KEY_WEIGHT_HISTORY_POPULATED}_$userId"
-
-        if (!prefs.getBoolean(key, false) && profile.currentWeightKg > 0) {
-            // Populate sample weight history
-            val startWeight = profile.currentWeightKg + 3f // Simulate starting 3kg higher
-            FirebaseDbManager.populateSampleWeightHistory(
-                userId = userId,
-                startWeight = startWeight,
-                targetWeight = profile.targetWeightKg,
-                onSuccess = {
-                    prefs.edit().putBoolean(key, true).apply()
-                    loadWeightHistory()
-                },
-                onError = {
-                    loadWeightHistory()
-                }
-            )
-        } else {
-            loadWeightHistory()
-        }
+        // Just load weight history - don't populate sample data automatically
+        // User can add weight entries via the Update Weight button
+        loadWeightHistory()
     }
 
     private fun loadWeightHistory() {

@@ -103,27 +103,16 @@
 
     </androidx.cardview.widget.CardView>
 
-    <!-- Scrollable Content -->
-    <ScrollView
+    <!-- Nutrition Summary Card (Fixed) -->
+    <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:fillViewport="true">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:padding="16dp">
-
-            <!-- Nutrition Summary Card -->
-            <androidx.cardview.widget.CardView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="16dp"
-                app:cardCornerRadius="16dp"
-                app:cardElevation="4dp"
-                app:cardBackgroundColor="@color/white">
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="12dp"
+        app:cardCornerRadius="16dp"
+        app:cardElevation="4dp"
+        app:cardBackgroundColor="@color/white">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -336,58 +325,59 @@
 
                 </LinearLayout>
 
-            </androidx.cardview.widget.CardView>
+    </androidx.cardview.widget.CardView>
 
-            <!-- Meals Section Header -->
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:gravity="center_vertical"
-                android:layout_marginBottom="12dp">
+    <!-- Meals Section Header (Fixed) -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:paddingHorizontal="16dp"
+        android:layout_marginBottom="8dp">
 
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="@string/todays_meals"
-                    android:textSize="18sp"
-                    android:textStyle="bold"
-                    android:textColor="@color/textPrimary" />
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/todays_meals"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:textColor="@color/textPrimary" />
 
-                <Button
-                    android:id="@+id/btnAddMeal"
-                    android:layout_width="wrap_content"
-                    android:layout_height="36dp"
-                    android:text="@string/add_meal"
-                    android:textSize="12sp"
-                    android:textColor="@color/white"
-                    android:background="@drawable/button_rounded_primary"
-                    android:paddingHorizontal="16dp" />
+        <Button
+            android:id="@+id/btnAddMeal"
+            android:layout_width="wrap_content"
+            android:layout_height="36dp"
+            android:text="@string/add_meal"
+            android:textSize="12sp"
+            android:textColor="@color/white"
+            android:background="@drawable/button_rounded_primary"
+            android:paddingHorizontal="16dp" />
 
-            </LinearLayout>
+    </LinearLayout>
 
-            <!-- Meals List -->
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/rvMeals"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:nestedScrollingEnabled="false" />
+    <!-- Meals List (Scrollable) -->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvMeals"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:paddingHorizontal="16dp"
+        android:paddingBottom="16dp"
+        android:clipToPadding="false" />
 
-            <!-- Empty State -->
-            <TextView
-                android:id="@+id/tvEmptyMeals"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/no_meals_today"
-                android:textSize="14sp"
-                android:textColor="@color/textSecondary"
-                android:gravity="center"
-                android:padding="32dp"
-                android:visibility="gone" />
-
-        </LinearLayout>
-
-    </ScrollView>
+    <!-- Empty State -->
+    <TextView
+        android:id="@+id/tvEmptyMeals"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:text="@string/no_meals_today"
+        android:textSize="14sp"
+        android:textColor="@color/textSecondary"
+        android:gravity="center"
+        android:padding="32dp"
+        android:visibility="gone" />
 
 </LinearLayout>
