@@ -112,6 +112,17 @@
     <string name="error_saving_meal">Error saving meal: %1$s</string>
     <string name="select_time">Select Time</string>
 
+    <!-- Voice Features Strings -->
+    <string name="voice_input">Voice input</string>
+    <string name="read_aloud">Read aloud</string>
+    <string name="listening">Listening...</string>
+    <string name="processing_speech">Processing speech...</string>
+    <string name="speak_now">Speak now</string>
+    <string name="speech_not_available">Speech recognition not available</string>
+    <string name="error_no_speech">No speech detected</string>
+    <string name="error_speech_timeout">Speech timeout - please try again</string>
+    <string name="permission_audio_required">Microphone permission is required for voice input</string>
+
     <!-- Placeholder Strings -->
     <string name="stats_coming_soon">Stats &amp; Analytics coming soon!</string>
     <string name="meals_coming_soon">Meal planning coming soon!</string>

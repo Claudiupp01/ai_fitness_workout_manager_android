@@ -5,6 +5,7 @@ import android.animation.ValueAnimator
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
@@ -15,7 +16,9 @@ import java.text.SimpleDateFormat
 import java.util.Date
 import java.util.Locale
 
-class ChatAdapter : ListAdapter<ChatMessage, RecyclerView.ViewHolder>(ChatDiffCallback()) {
+class ChatAdapter(
+    private val onSpeakClickListener: ((ChatMessage) -> Unit)? = null
+) : ListAdapter<ChatMessage, RecyclerView.ViewHolder>(ChatDiffCallback()) {
 
     companion object {
         private const val VIEW_TYPE_USER = 0
@@ -54,7 +57,7 @@ class ChatAdapter : ListAdapter<ChatMessage, RecyclerView.ViewHolder>(ChatDiffCa
         val message = getItem(position)
         when (holder) {
             is UserMessageViewHolder -> holder.bind(message)
-            is AIMessageViewHolder -> holder.bind(message)
+            is AIMessageViewHolder -> holder.bind(message, onSpeakClickListener)
             is LoadingViewHolder -> holder.bind()
         }
     }
@@ -72,10 +75,16 @@ class ChatAdapter : ListAdapter<ChatMessage, RecyclerView.ViewHolder>(ChatDiffCa
     class AIMessageViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         private val tvMessage: TextView = itemView.findViewById(R.id.tvMessage)
         private val tvTime: TextView = itemView.findViewById(R.id.tvTime)
+        private val btnSpeak: ImageView = itemView.findViewById(R.id.btnSpeak)
 
-        fun bind(message: ChatMessage) {
+        fun bind(message: ChatMessage, onSpeakClick: ((ChatMessage) -> Unit)?) {
             tvMessage.text = message.content
             tvTime.text = formatTime(message.timestamp)
+
+            // Set speaker button click listener
+            btnSpeak.setOnClickListener {
+                onSpeakClick?.invoke(message)
+            }
         }
     }
 
