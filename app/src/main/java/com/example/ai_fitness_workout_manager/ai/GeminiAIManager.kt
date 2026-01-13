@@ -19,7 +19,7 @@ object GeminiAIManager {
         temperature = 0.7f
         topK = 40
         topP = 0.95f
-        maxOutputTokens = 1024
+        maxOutputTokens = 1500
     }.build()
 
     fun initialize(apiKey: String = BuildConfig.GEMINI_API_KEY) {

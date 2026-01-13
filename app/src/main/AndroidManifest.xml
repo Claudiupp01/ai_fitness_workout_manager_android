@@ -5,6 +5,14 @@
     <!-- Permission for voice input (speech-to-text) -->
     <uses-permission android:name="android.permission.RECORD_AUDIO" />
 
+    <!-- Permissions for camera and image processing -->
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.READ_MEDIA_IMAGES" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" android:maxSdkVersion="32" />
+
+    <uses-feature android:name="android.hardware.camera" android:required="false" />
+    <uses-feature android:name="android.hardware.camera.autofocus" android:required="false" />
+
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
@@ -57,6 +65,30 @@
             android:name=".activity.RecipeDetailsActivity"
             android:exported="false"
             android:screenOrientation="portrait" />
+
+        <!-- Ingredient Recognition Activity -->
+        <activity
+            android:name=".activity.IngredientRecognitionActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustResize" />
+
+        <!-- Recipe Recommendations Activity -->
+        <activity
+            android:name=".activity.RecipeRecommendationsActivity"
+            android:exported="false"
+            android:screenOrientation="portrait" />
+
+        <!-- FileProvider for camera image capture -->
+        <provider
+            android:name="androidx.core.content.FileProvider"
+            android:authorities="${applicationId}.fileprovider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/file_paths" />
+        </provider>
 
     </application>
 

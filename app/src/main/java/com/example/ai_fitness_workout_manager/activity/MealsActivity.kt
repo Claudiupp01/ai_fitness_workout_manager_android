@@ -137,12 +137,8 @@ class MealsActivity : AppCompatActivity() {
         }
 
         btnCamera.setOnClickListener {
-            // Placeholder for future AI ingredient recognition feature
-            Toast.makeText(
-                this,
-                "AI Ingredient Recognition coming soon!\nThis will use your camera to identify ingredients and suggest recipes.",
-                Toast.LENGTH_LONG
-            ).show()
+            val intent = Intent(this, IngredientRecognitionActivity::class.java)
+            startActivity(intent)
         }
     }
 
