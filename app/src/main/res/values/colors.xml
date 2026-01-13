@@ -57,4 +57,9 @@
     <color name="chartLine">#4CAF50</color>
     <color name="chartFill">#E8F5E9</color>
     <color name="chartTarget">#FF5722</color>
+
+    <!-- Difficulty Colors -->
+    <color name="difficultyEasy">#4CAF50</color>
+    <color name="difficultyMedium">#2196F3</color>
+    <color name="difficultyHard">#F44336</color>
 </resources>

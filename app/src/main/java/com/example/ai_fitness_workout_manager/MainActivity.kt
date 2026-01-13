@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
+import com.example.ai_fitness_workout_manager.activity.MealsActivity
 import com.example.ai_fitness_workout_manager.firebase.FirebaseAuthManager
 import com.example.ai_fitness_workout_manager.fragment.AIAssistantFragment
 import com.example.ai_fitness_workout_manager.fragment.HomeFragment
@@ -41,6 +42,15 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    override fun onResume() {
+        super.onResume()
+        // Reset navigation to home when returning from MealsActivity
+        // This prevents the Meals icon from staying selected
+        if (bottomNavigation.selectedItemId == R.id.nav_meals) {
+            bottomNavigation.selectedItemId = R.id.nav_home
+        }
+    }
+
     private fun initViews() {
         bottomNavigation = findViewById(R.id.bottomNavigation)
     }
@@ -57,7 +67,9 @@ class MainActivity : AppCompatActivity() {
                     true
                 }
                 R.id.nav_meals -> {
-                    showFragment(getMealsFragment())
+                    // Launch MealsActivity instead of showing a fragment
+                    val intent = Intent(this, MealsActivity::class.java)
+                    startActivity(intent)
                     true
                 }
                 R.id.nav_workout -> {
