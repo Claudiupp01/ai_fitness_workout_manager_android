@@ -79,6 +79,18 @@
             android:exported="false"
             android:screenOrientation="portrait" />
 
+        <!-- Workouts Activity -->
+        <activity
+            android:name=".activity.WorkoutsActivity"
+            android:exported="false"
+            android:screenOrientation="portrait" />
+
+        <!-- Workout Details Activity -->
+        <activity
+            android:name=".activity.WorkoutDetailsActivity"
+            android:exported="false"
+            android:screenOrientation="portrait" />
+
         <!-- FileProvider for camera image capture -->
         <provider
             android:name="androidx.core.content.FileProvider"

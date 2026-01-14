@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/background">
+
+    <!-- Header -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:background="@color/primaryColor"
+        android:paddingHorizontal="20dp"
+        android:paddingVertical="16dp"
+        android:gravity="center_vertical">
+
+        <ImageView
+            android:id="@+id/btnBack"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:src="@android:drawable/ic_menu_revert"
+            app:tint="@color/white"
+            android:padding="4dp"
+            android:contentDescription="Back" />
+
+        <TextView
+            android:id="@+id/tvWorkoutTitle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Monday Workout"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:textColor="@color/white"
+            android:layout_marginStart="8dp" />
+
+        <ImageView
+            android:id="@+id/btnCopy"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:src="@android:drawable/ic_menu_save"
+            app:tint="@color/white"
+            android:padding="4dp"
+            android:contentDescription="Copy" />
+
+    </LinearLayout>
+
+    <!-- Scrollable Content -->
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <TextView
+                android:id="@+id/tvWorkoutDetails"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Loading workout details..."
+                android:textSize="14sp"
+                android:textColor="@color/textPrimary"
+                android:lineSpacingExtra="4dp"
+                android:textIsSelectable="true"
+                android:fontFamily="monospace" />
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</LinearLayout>
