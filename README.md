@@ -39,5 +39,41 @@ of them and fed them to a LLM for receipes generating, which we can save and use
 - We have the Workouts activity, where a working out plan is being geenrated for each week, by a LLM. The user have the option to read and see each workout for every day, or can regenerate the workouts for the whole week,
 thing that is also being done by the LLM.
 
-
 Overall, the application is great for use in general and it works as is, with great potential to being extended.
+
+LOG IN
+![login](https://github.com/user-attachments/assets/3aea4bb3-b50a-4917-8855-8847236af9d8)
+
+SIGN UP
+![signup](https://github.com/user-attachments/assets/2cc56b7c-dae4-4a77-a079-5cbc25f042f6)
+
+HOME
+![home](https://github.com/user-attachments/assets/3c296478-0e3a-4369-b7b8-15c8550a902c)
+
+MEALS
+![meals](https://github.com/user-attachments/assets/fb9d9d80-3898-46d9-9892-325561a67b70)
+MEALS
+![meals v2](https://github.com/user-attachments/assets/8b8c613b-b9ef-4a45-960f-5e9833f523e6)
+MEALS
+![meals v3](https://github.com/user-attachments/assets/fa88f1d3-15d2-46e5-ada2-0e8a7e852cdd)
+MEALS
+![meals v4](https://github.com/user-attachments/assets/f3d9236f-30ec-46e4-82b9-7ae287c81504)
+MEALS
+![meals v5](https://github.com/user-attachments/assets/64536e64-f0ae-449a-9356-b491ea1aff1c)
+MEALS
+![meals v6](https://github.com/user-attachments/assets/3c21b3b5-d341-46c0-a2d2-3122e9f9ade3)
+
+PROFILE
+![profile v2](https://github.com/user-attachments/assets/273f4861-f44f-424e-a551-6bae6370d7a5)
+PROFILE
+![profile](https://github.com/user-attachments/assets/f06ea3d4-f5dc-4d7b-947f-af1b34e34eea)
+
+AI COACH
+![ai coach](https://github.com/user-attachments/assets/5975be24-d4ae-4764-bdad-d379c4c7125d)
+
+WORKOUTS
+![workouts v0](https://github.com/user-attachments/assets/23e8be56-7b43-4bde-bb79-339661b53d72)
+WORKOUTS
+![workouts](https://github.com/user-attachments/assets/39f83be1-3c61-4375-ba1f-0eb36daa32e7)
+WORKOUTS
+![workouts v3](https://github.com/user-attachments/assets/fe4cf1f0-c37c-42e5-b961-80bba13a2e36)
